@@ -1,1 +1,44 @@
+Crea el dashboard "Pulso de Ventas · Distribuidora Andina", una empresa ficticia de alimentos y limpieza en Perú.  
 
+Datos: lee el JSON de https://unimauro.github.io/curso-ia-productividad/material/ventas-2025.json. Cada fila es un producto vendido en un pedido de 2025, con los campos fecha, mes, region, canal, vendedor, producto, categoria, proveedor, venta, costo, margen, descuento y estado_pago.  
+
+Quiero que cuente una historia, no solo números: 
+
+1. Un titular arriba con el hallazgo principal del año, en una frase, escrito a partir de los datos. 
+
+2. Tarjetas con ventas totales, margen %, pedidos y dinero vencido por cobrar, con un semáforo verde, ámbar o rojo. 
+
+3. Gráficos de ventas por mes, por región, por canal (Tienda, Mayorista, Online, WhatsApp) y el top 5 de productos. 
+
+4. Filtros por mes, región, canal y vendedor que actualicen todo. 
+
+5. Una sección "Alertas" que detecte sola: el vendedor con más descuento, la región o categoría que cae, y el canal que crece. 
+
+6. Una sección "Recomendación para la gerente" con 3 acciones concretas.  
+
+Estilo: colores pasteles, letras claras, transiciones suaves y con uin look muy profesional, en español, montos en soles (S/), se ve bien en el celular y tiene modo oscuro. Usa solo los datos del JSON.
+
+
+-------------------------------------
+Respuesta V0.app
+-------------------------------------
+
+El dashboard Pulso de Ventas · Distribuidora Andina está listo. Lee las 4,451 filas del JSON en el servidor, y el titular, las alertas y las recomendaciones se escriben solos a partir de esos datos. Con todo el año, el titular dice: «WhatsApp es la gran historia de 2025: sus ventas se multiplicaron por 4.9 entre el primer y el último trimestre, mientras la región Sur cayó 31.3% en el cierre del año».
+
+Tarjetas: ventas totales (S/ 645.4 mil), margen (34.4%), pedidos (2,463) y dinero vencido por cobrar (S/ 58.1 mil, en ámbar). El semáforo de cada una compara el 2.º semestre con el 1.º, o el mes elegido con el anterior.
+Gráficos: ventas y margen por mes, ventas por región, ventas por canal con su variación trimestral, y top 5 de productos.
+Filtros: mes, región, canal y vendedor actualizan todo, también el titular. Lo probé: al filtrar por Sur, el hallazgo cambia a «Limpieza cayó 43.5%».
+Alertas:
+El vendedor con más descuento: Rodrigo Salas, con 14.1% frente al 3.3% del resto del equipo.
+La región o categoría que más cae.
+El canal que más crece.
+Recomendación para la gerente:
+Poner un tope al descuento de Rodrigo Salas.
+Hacer una campaña de cobranza, empezando por la cartera y la región con más deuda vencida.
+Dar más impulso a Online y armar un plan para recuperar Sur. Cada acción muestra cuánto dinero está en juego.
+Cómo leer el semáforo y las tendencias:
+
+Margen: verde desde 34%.
+Vencido: ámbar entre 5% y 10% de las ventas, rojo desde 10%.
+Las alertas comparan el 4.º trimestre con el 3.º, porque la caída de un solo mes es poco confiable.
+Lo revisé en el navegador, en escritorio con modo claro y en celular con modo oscuro. En el celular la barra de filtros no queda fija arriba, para no tapar media pantalla; en escritorio sí. El último cambio de tipografía (pasé las cifras a números alineados en lugar de letra de máquina) no lo volví a ver en pantalla.
