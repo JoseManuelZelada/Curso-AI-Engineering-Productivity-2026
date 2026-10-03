@@ -42,3 +42,29 @@ Margen: verde desde 34%.
 Vencido: ámbar entre 5% y 10% de las ventas, rojo desde 10%.
 Las alertas comparan el 4.º trimestre con el 3.º, porque la caída de un solo mes es poco confiable.
 Lo revisé en el navegador, en escritorio con modo claro y en celular con modo oscuro. En el celular la barra de filtros no queda fija arriba, para no tapar media pantalla; en escritorio sí. El último cambio de tipografía (pasé las cifras a números alineados en lugar de letra de máquina) no lo volví a ver en pantalla.
+
+-------------------------------------
+https://andina-pulso-v1.vercel.app/
+-------------------------------------
+
+2) Inclusión de API
+
+Agrega una ruta de API en /api/resumen que lea el mismo JSON y devuelva en JSON las ventas, el margen, el vencido por cobrar, las ventas por mes, por región y por canal, y el top 5 de productos. Que acepte filtros opcionales por mes, region, canal y vendedor en la URL, por ejemplo /api/resumen?mes=12®ion=Norte. Agrega el encabezado Access-Control-Allow-Origin: *.
+
+------------------------------------
+
+Agregué la ruta GET /api/resumen. Lee el mismo JSON que el dashboard y usa los mismos cálculos, así que las cifras coinciden. Devuelve ventas, margen (en soles y %), pedidos, vencido por cobrar (en soles y %), ventas por mes, por región y por canal, y el top 5 de productos. Los montos están en soles ("moneda": "PEN"), redondeados a 2 decimales.
+
+Probado en local:
+
+/api/resumen?mes=12&region=Norte devolvió S/ 15,232.12 en ventas y S/ 646.60 vencido.
+Sin filtros devolvió S/ 645,402.26 en ventas.
+?mes=13 responde 400, porque mes debe ser un número del 1 al 12.
+OPTIONS responde 204.
+Todas las respuestas, incluidas las de error, llevan Access-Control-Allow-Origin: *.
+Ten en cuenta que en tu ejemplo de URL el &region aparece como ®ion (el navegador o el editor convierte &reg en el símbolo ®). Escríbelo como &region=Norte. Los nombres de región, canal y vendedor tienen que coincidir exactamente con los del JSON (por ejemplo WhatsApp). Si no coinciden, no da error: devuelve todo en cero.
+
+Los cambios están subidos en la rama v0/api-resumen
+
+
+
