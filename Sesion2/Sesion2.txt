@@ -59,12 +59,57 @@ Probado en local:
 
 /api/resumen?mes=12&region=Norte devolvió S/ 15,232.12 en ventas y S/ 646.60 vencido.
 Sin filtros devolvió S/ 645,402.26 en ventas.
+
 ?mes=13 responde 400, porque mes debe ser un número del 1 al 12.
 OPTIONS responde 204.
 Todas las respuestas, incluidas las de error, llevan Access-Control-Allow-Origin: *.
 Ten en cuenta que en tu ejemplo de URL el &region aparece como ®ion (el navegador o el editor convierte &reg en el símbolo ®). Escríbelo como &region=Norte. Los nombres de región, canal y vendedor tienen que coincidir exactamente con los del JSON (por ejemplo WhatsApp). Si no coinciden, no da error: devuelve todo en cero.
 
 Los cambios están subidos en la rama v0/api-resumen
+
+3) Inclusión de Agente
+
+En V0 se instruye:
+
+Agrega un agente conversacional llamado “Analista Andina”.
+
+Mi proyecto usa Next.js App Router. Crea:
+- app/chat/page.tsx: interfaz de chat.
+- app/api/chat/route.ts: endpoint POST del agente.
+
+El endpoint debe usar OpenRouter con:
+- LLM_API_KEY (solo en servidor)
+- LLM_MODEL
+- base URL https://openrouter.ai/api/v1
+
+Define la herramienta resumen_ventas con filtros opcionales:
+mes, region, canal y vendedor.
+
+Cuando el modelo solicite esa herramienta, el servidor debe llamar internamente a /api/resumen con esos filtros, devolver el resultado al modelo y mostrar en la interfaz:
+“Consulta realizada: /api/resumen?...”.
+
+Reglas:
+- Nunca inventes cifras.
+- Si no consultó la herramienta, dilo claramente.
+- Responde en español y usa PEN/S/.
+- No expongas LLM_API_KEY al navegador.
+- Mantén intacta la API existente /api/resumen.
+
+Luego, en Vercel:
+1. Settings → Environment Variables
+2. Crea:
+   - LLM_API_KEY = tu clave de OpenRouter
+   - LLM_MODEL = el slug exacto del modelo gratuito
+3. Elige un modelo con soporte de herramientas filtrando el catálogo por tools; los modelos gratuitos y su disponibilidad cambian, así que copia el nombre exacto que aparezca allí. Documentation
+4. Publica desde v0.
+5. Prueba en:
+   https://andina-pulso-v1.vercel.app/chat
+No pegues tu clave aquí ni en el prompt de v0. Si me indicas el modelo que elegiste, puedo revisar el prompt antes de que lo ejecutes.
+
+
+
+
+
 
 
 
